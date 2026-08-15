@@ -1,0 +1,91 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&display=swap");
+
+@import "tailwindcss";
+
+:root {
+  --color-primary-gold-500: hsl(39, 89%, 49%);
+  --color-primary-gold-600: hsl(28, 76%, 44%);
+  --color-primary-blue-500: hsl(230, 89%, 62%);
+  --color-primary-blue-700: hsl(229, 64%, 46%);
+  --color-primary-red-600: hsl(349, 71%, 52%);
+  --color-primary-red-800: hsl(347, 75%, 35%);
+  --color-primary-purple-600: hsl(261, 73%, 60%);
+  --color-primary-purple-700: hsl(261, 51%, 44%);
+  --color-primary-light-blue-400: hsl(189, 59%, 53%);
+  --color-primary-light-blue-500: hsl(194, 58%, 42%);
+
+  --color-neutral-navy-900-dark-text: hsl(229, 25%, 31%);
+  --color-neutral-blue-700-score-text: hsl(229, 64%, 46%);
+  --color-neutral-gray-600-header-outline: hsl(246, 11%, 37%);
+
+  --color-background-radial-gradient: radial-gradient(
+    circle,
+    hsl(214, 47%, 23%),
+    hsl(237, 48%, 15%)
+  );
+
+  font-family: "Barlow Semi Condensed", sans-serif;
+}
+
+body {
+  background: var(--color-background-radial-gradient);
+}
+
+@theme {
+  --color-primary-gold-500: hsl(39, 89%, 49%);
+  --color-primary-gold-600: hsl(28, 76%, 44%);
+  --color-primary-blue-500: hsl(230, 89%, 62%);
+  --color-primary-blue-700: hsl(229, 64%, 46%);
+  --color-primary-red-600: hsl(349, 71%, 52%);
+  --color-primary-red-800: hsl(347, 75%, 35%);
+  --color-primary-purple-600: hsl(261, 73%, 60%);
+  --color-primary-purple-700: hsl(261, 51%, 44%);
+  --color-primary-light-blue-400: hsl(189, 59%, 53%);
+  --color-primary-light-blue-500: hsl(194, 58%, 42%);
+
+  --color-neutral-navy-900-dark-text: hsl(229, 25%, 31%);
+  --color-neutral-blue-700-score-text: hsl(229, 64%, 46%);
+  --color-neutral-gray-600-header-outline: hsl(246, 11%, 37%);
+
+  --color-background-radial-gradient: radial-gradient(
+    circle,
+    hsl(214, 47%, 23%),
+    hsl(237, 48%, 15%)
+  );
+}
+
+@layer components {
+  .triangle {
+    background-image: url("/images/bg-triangle.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    /* Base (mobile) size: keep the triangle smaller so buttons fit */
+    background-size: 60% auto;
+  }
+
+  .hover-bg {
+    background-image: url("/images/bg-hover.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+  }
+
+  /* Responsive triangle sizing */
+  @media (max-width: 640px) {
+    .triangle {
+      background-size: 55% auto;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .triangle {
+      background-size: 80% auto;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .triangle {
+      background-size: 80% auto;
+    }
+  }
+}

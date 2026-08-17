@@ -28,11 +28,14 @@ const choices = [
 ];
 
 function GameBox() {
-  const { playGame } = useGames();
+  const { startGame, playGame } = useGames();
 
   return (
     // <section className="flex items-center justify-center triangle bg-no-repeat bg-center min-h-[27rem] relative mt-28 max-w-[60rem] w-full md:max-w-[40rem] md:min-h-[20rem]">
-    <section className="triangle bg-no-repeat bg-center relative mt-28 lg:mt-20 mx-auto h-[380px] w-[420px] md:w-[420px] max-sm:mt-10 max-[480px]:w-full">
+    <section
+      onClick={startGame}
+      className="triangle bg-no-repeat bg-center relative mt-28 lg:mt-20 mx-auto h-[380px] w-[420px] md:w-[420px] max-sm:mt-10 max-[480px]:w-full"
+    >
       {/* <div
         className="absolute left-[9rem] h-[24.8rem] w-[25.2rem] cursor-pointer max:w-[13rem] max:h-[13rem] max:left-64 max:top-12 sma:top-6 sma:-left-8"
         // onClick={() => handlePlay(Paper)}

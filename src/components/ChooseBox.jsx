@@ -1,0 +1,36 @@
+function ChooseBox({ heading, type, isWinner, palette }) {
+  const outer = palette?.outer ?? "bg-[#f3f3f3]";
+  const shadow = palette?.shadow ?? "shadow-[0_10px_0_rgba(120,120,130,0.9)]";
+
+  return (
+    <div className="flex flex-col items-center gap-4 sm:gap-5 md:gap-6">
+      <h2 className="text-[1.4rem] font-bold uppercase tracking-[0.18rem] text-white md:text-[1.8rem] lg:tracking-[0.28rem]">
+        {heading}
+      </h2>
+
+      <div className="relative flex items-center justify-center h-[12rem] w-[12rem] lg:h-[18rem] lg:w-[18rem]">
+        {isWinner && (
+          <>
+            <div className="absolute inset-[-1.1rem] rounded-full bg-white/5 sm:inset-[-1rem] lg:inset-[-2.2rem]" />
+            <div className="absolute inset-[-2.2rem] rounded-full bg-white/4 sm:inset-[-2.3rem] lg:inset-[-4.2rem]" />
+            <div className="absolute inset-[-3.3rem] rounded-full bg-white/3 sm:inset-[-3.5rem] lg:inset-[-6.1rem]" />
+          </>
+        )}
+
+        <div
+          className={`relative flex h-[9rem] w-[9rem] items-center justify-center rounded-full ${outer} ${shadow} sm:h-[9rem] sm:w-[9rem] lg:h-[14rem] lg:w-[14rem]`}
+        >
+          <div className="flex h-full w-full items-center justify-center rounded-full bg-[#f3f3f3] shadow-[inset_0_8px_0_rgba(0,0,0,0.08)]">
+            <img
+              src={type}
+              alt={heading}
+              className="h-[4.2rem] w-[4.2rem] object-contain sm:h-[4.2rem] sm:w-[4.2rem] lg:h-[6.4rem] lg:w-[6.4rem]"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default ChooseBox;

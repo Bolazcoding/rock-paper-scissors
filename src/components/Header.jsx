@@ -1,4 +1,7 @@
+import { useGames } from "../contexts/GameContext";
+
 function Header() {
+  const { score } = useGames();
   return (
     <header className="flex justify-between px-6 border-4 border-neutral-gray-600-header-outline rounded-xl w-full">
       <span className="flex items-center py-6">
@@ -9,7 +12,7 @@ function Header() {
           Score
         </p>
         <h1 className="text-5xl text-neutral-navy-900-dark-text font-bold sm:text-6xl">
-          12
+          {score}
         </h1>
       </div>
     </header>

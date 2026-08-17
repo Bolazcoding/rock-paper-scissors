@@ -1,16 +1,53 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useReducer } from "react";
 
 const GamesContext = createContext();
 
 const choices = ["rock", "paper", "scissors"];
 
-function GamesProvider({ children }) {
-  const [playerChoice, setPlayerChoice] = useState(null);
-  const [computerChoice, setComputerChoice] = useState(null);
-  const [result, setResult] = useState(null);
-  const [score, setScore] = useState(0);
+// Initial state
+const initialState = {
+  gameStage: "start",
+  playerChoice: null,
+  computerChoice: null,
+  result: null,
+  score: 0,
+};
 
-  console.log(playerChoice);
+// Reducer function
+const gameReducer = (state, action) => {
+  switch (action.type) {
+    case "START_GAME":
+      return {
+        ...state,
+        gameStage: "choosing",
+      };
+
+    case "PLAY_GAME":
+      return {
+        ...state,
+        playerChoice: action.payload.playerChoice,
+        computerChoice: action.payload.computerChoice,
+        result: action.payload.result,
+        gameStage: "result",
+        score: action.payload.newScore,
+      };
+
+    case "RESET_GAME":
+      return {
+        ...state,
+        gameStage: "start",
+        playerChoice: null,
+        computerChoice: null,
+        result: null,
+      };
+
+    default:
+      return state;
+  }
+};
+
+function GamesProvider({ children }) {
+  const [state, dispatch] = useReducer(gameReducer, initialState);
 
   function getComputerChoice() {
     const randomComputerIndex = Math.floor(Math.random() * choices.length);
@@ -33,37 +70,47 @@ function GamesProvider({ children }) {
     }
   };
 
+  const startGame = () => {
+    dispatch({ type: "START_GAME" });
+  };
+
   const playGame = function (playerSection) {
     const computerSelection = getComputerChoice();
-
     const gameResult = determineWinner(playerSection, computerSelection);
 
-    setPlayerChoice(playerSection);
-    setComputerChoice(computerSelection);
-    setResult(gameResult);
-
+    let newScore = state.score;
     if (gameResult === "win") {
-      setScore((prevScore) => prevScore + 1);
+      newScore = state.score + 1;
     }
 
     if (gameResult === "lose") {
-      setScore((prevScore) => prevScore - 1);
+      newScore = Math.max(state.score - 1, 0);
     }
+
+    dispatch({
+      type: "PLAY_GAME",
+      payload: {
+        playerChoice: playerSection,
+        computerChoice: computerSelection,
+        result: gameResult,
+        newScore,
+      },
+    });
   };
 
   const resetGame = () => {
-    setPlayerChoice(null);
-    setComputerChoice(null);
-    setResult(null);
+    dispatch({ type: "RESET_GAME" });
   };
 
   return (
     <GamesContext.Provider
       value={{
-        playerChoice,
-        computerChoice,
-        result,
-        score,
+        startGame,
+        gameStage: state.gameStage,
+        playerChoice: state.playerChoice,
+        computerChoice: state.computerChoice,
+        result: state.result,
+        score: state.score,
         playGame,
         resetGame,
       }}

@@ -4,16 +4,16 @@ function ChooseBox({ heading, type, isWinner, palette }) {
 
   return (
     <div className="flex flex-col items-center gap-4 sm:gap-5 md:gap-6">
-      <h2 className="text-[1.4rem] font-bold uppercase tracking-[0.18rem] text-white md:text-[1.8rem] lg:tracking-[0.28rem]">
+      <h2 className="text-[1rem] font-bold uppercase tracking-[0.14rem] text-white md:text-[1.2rem] lg:text-[1.6rem] lg:font-bold lg:tracking-[0.28rem]">
         {heading}
       </h2>
 
       <div className="relative flex items-center justify-center h-[12rem] w-[12rem] lg:h-[18rem] lg:w-[18rem]">
         {isWinner && (
           <>
-            <div className="absolute inset-[-1.1rem] rounded-full bg-white/5 sm:inset-[-1rem] lg:inset-[-2.2rem]" />
-            <div className="absolute inset-[-2.2rem] rounded-full bg-white/4 sm:inset-[-2.3rem] lg:inset-[-4.2rem]" />
-            <div className="absolute inset-[-3.3rem] rounded-full bg-white/3 sm:inset-[-3.5rem] lg:inset-[-6.1rem]" />
+            <div className="absolute inset-[-1.1rem] rounded-full bg-white/3 sm:inset-[-0.5rem] md:inset-[-1rem]" />
+            <div className="absolute inset-[-2.2rem] rounded-full bg-white/2 sm:inset-[-2.3rem] md:inset-[-4.8rem]" />
+            <div className="absolute inset-[-3.3rem] rounded-full bg-white/1 sm:inset-[-4.5rem] md:inset-[-8.9rem]" />
           </>
         )}
 

@@ -1,7 +1,9 @@
 import Paper from "/images/icon-paper.svg";
 import Scissors from "/images/icon-scissors.svg";
 import Rock from "/images/icon-rock.svg";
-import { useGames } from "../contexts/GameContext";
+import Lizard from "/images/icon-lizard.svg";
+import Spock from "/images/icon-spock.svg";
+import { useBonus } from "../contexts/GameBonusContext";
 
 const choices = [
   {
@@ -25,10 +27,24 @@ const choices = [
       "bottom-0 left-1/2 -translate-x-1/2 max-[640px]:bottom-[2rem] max-[640px]:left-1/2 max-[400px]:bottom-[7rem] max-[400px]:left-1/2",
     border: "border-primary-red-600",
   },
+  {
+    name: "lizard",
+    image: Lizard,
+    position:
+      "bottom-0 left-1/2 -translate-x-1/2 max-[640px]:bottom-[2rem] max-[640px]:left-1/2 max-[400px]:bottom-[7rem] max-[400px]:left-1/2",
+    border: "border-primary-red-600",
+  },
+  {
+    name: "spock",
+    image: Spock,
+    position:
+      "bottom-0 left-1/2 -translate-x-1/2 max-[640px]:bottom-[2rem] max-[640px]:left-1/2 max-[400px]:bottom-[7rem] max-[400px]:left-1/2",
+    border: "border-primary-red-600",
+  },
 ];
 
-function GameBox() {
-  const { startGame, playGame } = useGames();
+function BonusGameBox() {
+  const { startGame, playGame } = useBonus();
 
   return (
     // <section className="flex items-center justify-center triangle bg-no-repeat bg-center min-h-[27rem] relative mt-28 max-w-[60rem] w-full md:max-w-[40rem] md:min-h-[20rem]">
@@ -70,4 +86,4 @@ function GameBox() {
   );
 }
 
-export default GameBox;
+export default BonusGameBox;

@@ -37,20 +37,22 @@ function ChooseBoxes() {
   const { playerChoice, computerChoice, result } = useGames();
 
   const winner = result === "win" || result === "lose" || result === "draw";
+  const player = result === "win";
+  const computer = result === "lose";
   const playerImage = getChoiceImage(playerChoice);
   const computerImage = getChoiceImage(computerChoice);
 
   return (
-    <div className="mx-auto mt-10 w-full max-w-[62rem] sm:mt-14 md:mt-16">
+    <div className="mx-auto mt-14 w-full max-w-[62rem] sm:mt-14 md:mt-16">
       <div
-        className={`grid items-center justify-center gap-x-8 gap-y-8 lg:gap-x-20 ${
+        className={`grid items-center justify-center gap-x-8 gap-y-8 md:gap-x-8 lg:gap-x-8 ${
           winner ? "grid-cols-2 md:grid-cols-[1fr_auto_1fr]" : "grid-cols-2"
         }`}
       >
         <ChooseBox
           heading="You picked"
           type={playerImage}
-          isWinner={winner}
+          isWinner={player}
           palette={getChoicePalette(playerChoice)}
         />
 
@@ -59,7 +61,7 @@ function ChooseBoxes() {
         <ChooseBox
           heading="The house picked"
           type={computerImage}
-          isWinner={winner}
+          isWinner={computer}
           palette={getChoicePalette(computerChoice)}
         />
       </div>

@@ -1,8 +1,8 @@
 import { createContext, useContext, useReducer } from "react";
 
-const GamesContext = createContext();
+const GamesBonusContext = createContext();
 
-const choices = ["rock", "paper", "scissors"];
+const choices = ["rock", "paper", "scissors", "lizard", "spock"];
 
 // Initial state
 const initialState = {
@@ -45,7 +45,7 @@ const gameReducer = (state, action) => {
   }
 };
 
-function GamesProvider({ children }) {
+function GamesBonusProvider({ children }) {
   const [state, dispatch] = useReducer(gameReducer, initialState);
 
   function getComputerChoice() {
@@ -97,12 +97,12 @@ function GamesProvider({ children }) {
     });
   };
 
-  const resetGame = () => {
+  const resetBonusGame = () => {
     dispatch({ type: "RESET_GAME" });
   };
 
   return (
-    <GamesContext.Provider
+    <GamesBonusContext.Provider
       value={{
         startGame,
         gameStage: state.gameStage,
@@ -111,16 +111,16 @@ function GamesProvider({ children }) {
         result: state.result,
         score: state.score,
         playGame,
-        resetGame,
+        resetBonusGame,
       }}
     >
       {children}
-    </GamesContext.Provider>
+    </GamesBonusContext.Provider>
   );
 }
 
-function useGames() {
-  const context = useContext(GamesContext);
+function useBonus() {
+  const context = useContext(GamesBonusContext);
 
   if (context === undefined)
     throw new Error("GamesContext was used outside the GamesProvider");
@@ -128,4 +128,4 @@ function useGames() {
   return context;
 }
 
-export { GamesProvider, useGames };
+export { GamesBonusProvider, useBonus };

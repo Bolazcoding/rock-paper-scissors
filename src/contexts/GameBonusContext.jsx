@@ -53,15 +53,43 @@ function GamesBonusProvider({ children }) {
     return choices[randomComputerIndex];
   }
 
+  // const determineWinner = function (player, computer) {
+  //   if (player === computer) {
+  //     return "draw";
+  //   }
+
+  //   if (
+  //     (player === "rock" && computer === "scissors") ||
+  //     (player === "paper" && computer === "rock") ||
+  //     (player === "scissors" && computer === "paper")
+  //   ) {
+  //     return "win";
+  //   } else {
+  //     return "lose";
+  //   }
+  // };
+
   const determineWinner = function (player, computer) {
     if (player === computer) {
       return "draw";
     }
 
     if (
+      // Rock
       (player === "rock" && computer === "scissors") ||
+      (player === "rock" && computer === "lizard") ||
+      // Paper
       (player === "paper" && computer === "rock") ||
-      (player === "scissors" && computer === "paper")
+      (player === "paper" && computer === "spock") ||
+      // Scissors
+      (player === "scissors" && computer === "paper") ||
+      (player === "scissors" && computer === "lizard") ||
+      // Lizard
+      (player === "lizard" && computer === "spock") ||
+      (player === "lizard" && computer === "paper") ||
+      // Spock
+      (player === "spock" && computer === "scissors") ||
+      (player === "spock" && computer === "rock")
     ) {
       return "win";
     } else {
@@ -73,7 +101,7 @@ function GamesBonusProvider({ children }) {
     dispatch({ type: "START_GAME" });
   };
 
-  const playGame = function (playerSection) {
+  const playBonusGame = function (playerSection) {
     const computerSelection = getComputerChoice();
     const gameResult = determineWinner(playerSection, computerSelection);
 
@@ -110,7 +138,7 @@ function GamesBonusProvider({ children }) {
         computerChoice: state.computerChoice,
         result: state.result,
         score: state.score,
-        playGame,
+        playBonusGame,
         resetBonusGame,
       }}
     >
@@ -123,7 +151,9 @@ function useBonus() {
   const context = useContext(GamesBonusContext);
 
   if (context === undefined)
-    throw new Error("GamesContext was used outside the GamesProvider");
+    throw new Error(
+      "GamesBonusContext was used outside the GamesBonusProvider",
+    );
 
   return context;
 }

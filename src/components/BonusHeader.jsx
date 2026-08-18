@@ -8,10 +8,10 @@ function BonusHeader() {
         <img
           src="/images/logo-bonus.svg"
           alt="logo"
-          className=" h-16 sm:h-24"
+          className=" h-24 sm:h-32"
         />
       </span>
-      <div className="bg-white text-center my-4 py-2.5 px-7 rounded-sm max-sm:py-2 max-sm:px-5">
+      <div className="bg-white text-center my-9 py-2.5 px-7 rounded-sm max-sm:py-2 max-sm:px-5">
         <p className="uppercase text-xs text-neutral-blue-700-score-text font-semibold tracking-widest sm:text-lg">
           Score
         </p>

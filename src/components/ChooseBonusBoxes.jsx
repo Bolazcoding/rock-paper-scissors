@@ -1,7 +1,6 @@
-// import { useEffect } from "react";
-import { useGames } from "../contexts/GameContext";
-import ChooseBox from "./ChooseBox";
-import Decision from "./Decision";
+import ChooseBonusBox from "./ChooseBonusBox";
+import BonusDecision from "./BonusDecision";
+import { useBonus } from "../contexts/GameBonusContext";
 
 const getChoiceImage = (choice) => {
   if (!choice) return null;
@@ -25,6 +24,16 @@ const getChoicePalette = (choice) => {
         outer: "bg-primary-red-600",
         shadow: "shadow-[0_10px_0_rgba(140,33,62,0.9)]",
       };
+    case "lizard":
+      return {
+        outer: "bg-primary-purple-600",
+        shadow: "shadow-[0_10px_0_rgba(95,55,169,0.9)]",
+      };
+    case "spock":
+      return {
+        outer: "bg-primary-light-blue-400",
+        shadow: "shadow-[0_10px_0_rgba(45,140,169,0.9)]",
+      };
     default:
       return {
         outer: "bg-[#f1f1f1]",
@@ -33,8 +42,8 @@ const getChoicePalette = (choice) => {
   }
 };
 
-function ChooseBoxes() {
-  const { playerChoice, computerChoice, result } = useGames();
+function ChooseBonusBoxes() {
+  const { playerChoice, computerChoice, result } = useBonus();
 
   const winner = result === "win" || result === "lose" || result === "draw";
   const player = result === "win";
@@ -49,16 +58,16 @@ function ChooseBoxes() {
           winner ? "grid-cols-2 md:grid-cols-[1fr_auto_1fr]" : "grid-cols-2"
         }`}
       >
-        <ChooseBox
+        <ChooseBonusBox
           heading="You picked"
           type={playerImage}
           isWinner={player}
           palette={getChoicePalette(playerChoice)}
         />
 
-        {winner && <Decision />}
+        {winner && <BonusDecision />}
 
-        <ChooseBox
+        <ChooseBonusBox
           heading="The house picked"
           type={computerImage}
           isWinner={computer}
@@ -69,4 +78,4 @@ function ChooseBoxes() {
   );
 }
 
-export default ChooseBoxes;
+export default ChooseBonusBoxes;

@@ -10,8 +10,8 @@ function App() {
 
   return (
     <main className=" mx-auto overflow-x-hidden">
-      <GamesBonusProvider>
-        <GamesProvider>
+      <GamesProvider>
+        <GamesBonusProvider>
           <BrowserRouter>
             <Routes>
               <Route
@@ -34,8 +34,8 @@ function App() {
               />
             </Routes>
           </BrowserRouter>
-        </GamesProvider>
-      </GamesBonusProvider>
+        </GamesBonusProvider>
+      </GamesProvider>
     </main>
   );
 }

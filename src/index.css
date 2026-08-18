@@ -57,9 +57,14 @@ body {
 @layer components {
   .triangle {
     background-image: url("/images/bg-triangle.svg");
-    background-repeat: no-repeat;
-    background-position: center;
+    /* background-repeat: no-repeat;
+    background-position: center; */
     /* Base (mobile) size: keep the triangle smaller so buttons fit */
+    background-size: 60% auto;
+  }
+
+  .pentagon {
+    background-image: url("/images/bg-pentagon.svg");
     background-size: 60% auto;
   }
 
@@ -71,19 +76,36 @@ body {
   }
 
   /* Responsive triangle sizing */
+  @media (max-width: 390px) {
+    .pentagon {
+      background-size: 75% auto !important;
+    }
+  }
   @media (max-width: 640px) {
+    .pentagon {
+      background-size: 65% auto;
+    }
+
     .triangle {
       background-size: 55% auto;
     }
   }
 
   @media (min-width: 768px) {
+    .pentagon {
+      background-size: 80% auto;
+    }
+
     .triangle {
       background-size: 80% auto;
     }
   }
 
   @media (min-width: 1024px) {
+    .pentagon {
+      background-size: 80% auto;
+    }
+
     .triangle {
       background-size: 80% auto;
     }

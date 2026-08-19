@@ -1,4 +1,3 @@
-// import { useEffect } from "react";
 import { useGames } from "../contexts/GameContext";
 import ChooseBox from "./ChooseBox";
 import Decision from "./Decision";

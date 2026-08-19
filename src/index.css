@@ -3,7 +3,7 @@
 @import "tailwindcss";
 
 :root {
-  --color-primary-gold-500: hsl(39, 89%, 49%);
+  /* --color-primary-gold-500: hsl(39, 89%, 49%);
   --color-primary-gold-600: hsl(28, 76%, 44%);
   --color-primary-blue-500: hsl(230, 89%, 62%);
   --color-primary-blue-700: hsl(229, 64%, 46%);
@@ -22,7 +22,7 @@
     circle,
     hsl(214, 47%, 23%),
     hsl(237, 48%, 15%)
-  );
+  ); */
 
   font-family: "Barlow Semi Condensed", sans-serif;
 }

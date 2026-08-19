@@ -6,8 +6,6 @@ import Footer from "../components/Footer";
 import { useBonus } from "../contexts/GameBonusContext";
 
 function Bonuspage({ handleRuleOpen, sethandleRuleOpen }) {
-  //   const [handleRuleOpen, sethandleRuleOpen] = useState(false);
-
   const { gameStage } = useBonus();
 
   return (

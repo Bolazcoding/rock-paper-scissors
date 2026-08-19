@@ -111,3 +111,36 @@ body {
     }
   }
 }
+
+@keyframes spin-reveal {
+  0% {
+    opacity: 1;
+    transform: scale(1) rotateZ(0deg);
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.8) rotateZ(180deg);
+  }
+}
+
+@layer components {
+  .animate-spin-reveal {
+    animation: spin-reveal 1s ease-in-out forwards;
+  }
+
+  .fade-in-reveal {
+    animation: fadeIn 0.3s ease-in forwards;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

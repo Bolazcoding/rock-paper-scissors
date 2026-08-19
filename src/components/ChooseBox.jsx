@@ -1,4 +1,11 @@
-function ChooseBox({ heading, type, isWinner, palette }) {
+function ChooseBox({
+  heading,
+  type,
+  isWinner,
+  palette,
+  isLoading,
+  showWinnerGlow,
+}) {
   const outer = palette?.outer ?? "bg-[#f3f3f3]";
   const shadow = palette?.shadow ?? "shadow-[0_10px_0_rgba(120,120,130,0.9)]";
 
@@ -9,7 +16,7 @@ function ChooseBox({ heading, type, isWinner, palette }) {
       </h2>
 
       <div className="relative flex items-center justify-center h-[12rem] w-[12rem] lg:h-[18rem] lg:w-[18rem]">
-        {isWinner && (
+        {isWinner && showWinnerGlow && (
           <>
             <div className="absolute inset-[-1.1rem] rounded-full bg-white/3 sm:inset-[-0.5rem] md:inset-[-1rem]" />
             <div className="absolute inset-[-2.2rem] rounded-full bg-white/2 sm:inset-[-2.3rem] md:inset-[-4.8rem]" />
@@ -18,14 +25,20 @@ function ChooseBox({ heading, type, isWinner, palette }) {
         )}
 
         <div
-          className={`relative flex h-[9rem] w-[9rem] items-center justify-center rounded-full ${outer} ${shadow} sm:h-[9rem] sm:w-[9rem] lg:h-[14rem] lg:w-[14rem]`}
+          className={`relative flex h-[9rem] w-[9rem] items-center justify-center rounded-full ${outer} ${shadow} sm:h-[9rem] sm:w-[9rem] lg:h-[14rem] lg:w-[14rem] ${
+            isLoading ? "animate-spin-reveal" : "fade-in-reveal"
+          }`}
         >
           <div className="flex h-full w-full items-center justify-center rounded-full bg-[#f3f3f3] shadow-[inset_0_8px_0_rgba(0,0,0,0.08)]">
-            <img
-              src={type}
-              alt={heading}
-              className="h-[4.2rem] w-[4.2rem] object-contain sm:h-[4.2rem] sm:w-[4.2rem] lg:h-[6.4rem] lg:w-[6.4rem]"
-            />
+            {type ? (
+              <img
+                src={type}
+                alt={heading}
+                className="h-[4.2rem] w-[4.2rem] object-contain sm:h-[4.2rem] sm:w-[4.2rem] lg:h-[6.4rem] lg:w-[6.4rem]"
+              />
+            ) : (
+              <div className="h-[4.2rem] w-[4.2rem] sm:h-[4.2rem] sm:w-[4.2rem] lg:h-[6.4rem] lg:w-[6.4rem]" />
+            )}
           </div>
         </div>
       </div>

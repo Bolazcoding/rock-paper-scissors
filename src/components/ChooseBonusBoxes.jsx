@@ -1,6 +1,7 @@
 import ChooseBonusBox from "./ChooseBonusBox";
 import BonusDecision from "./BonusDecision";
 import { useBonus } from "../contexts/GameBonusContext";
+import { useEffect, useState } from "react";
 
 const getChoiceImage = (choice) => {
   if (!choice) return null;
@@ -44,6 +45,20 @@ const getChoicePalette = (choice) => {
 
 function ChooseBonusBoxes() {
   const { playerChoice, computerChoice, result } = useBonus();
+  const [showComputerChoice, setShowComputerChoice] = useState(false);
+
+  useEffect(() => {
+    // Reset state when computer choice changes (deferred to avoid cascading renders)
+    queueMicrotask(() => {
+      setShowComputerChoice(false);
+    });
+    // Show computer choice after 1 second
+    const timer = setTimeout(() => {
+      setShowComputerChoice(true);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, [computerChoice]);
 
   const winner = result === "win" || result === "lose" || result === "draw";
   const player = result === "win";
@@ -62,16 +77,19 @@ function ChooseBonusBoxes() {
           heading="You picked"
           type={playerImage}
           isWinner={player}
+          showWinnerGlow={showComputerChoice}
           palette={getChoicePalette(playerChoice)}
         />
 
-        {winner && <BonusDecision />}
+        {winner && showComputerChoice && <BonusDecision />}
 
         <ChooseBonusBox
           heading="The house picked"
-          type={computerImage}
+          type={showComputerChoice ? computerImage : null}
           isWinner={computer}
+          showWinnerGlow={showComputerChoice}
           palette={getChoicePalette(computerChoice)}
+          isLoading={!showComputerChoice}
         />
       </div>
     </div>

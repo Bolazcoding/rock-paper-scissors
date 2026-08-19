@@ -1,4 +1,5 @@
 import { useGames } from "../contexts/GameContext";
+import { useEffect, useState } from "react";
 import ChooseBox from "./ChooseBox";
 import Decision from "./Decision";
 
@@ -34,6 +35,19 @@ const getChoicePalette = (choice) => {
 
 function ChooseBoxes() {
   const { playerChoice, computerChoice, result } = useGames();
+  const [showComputerChoice, setShowComputerChoice] = useState(false);
+
+  useEffect(() => {
+    queueMicrotask(() => {
+      setShowComputerChoice(false);
+    });
+
+    const timer = setTimeout(() => {
+      setShowComputerChoice(true);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, [computerChoice]);
 
   const winner = result === "win" || result === "lose" || result === "draw";
   const player = result === "win";
@@ -52,16 +66,19 @@ function ChooseBoxes() {
           heading="You picked"
           type={playerImage}
           isWinner={player}
+          showWinnerGlow={showComputerChoice}
           palette={getChoicePalette(playerChoice)}
         />
 
-        {winner && <Decision />}
+        {winner && showComputerChoice && <Decision />}
 
         <ChooseBox
           heading="The house picked"
-          type={computerImage}
+          type={showComputerChoice ? computerImage : null}
           isWinner={computer}
+          showWinnerGlow={showComputerChoice}
           palette={getChoicePalette(computerChoice)}
+          isLoading={!showComputerChoice}
         />
       </div>
     </div>
